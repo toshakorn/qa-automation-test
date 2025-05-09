@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/upload-artifact@v4
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -20,12 +20,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest responses pytest-html
 
-      - name: Run tests with pytest
-        run: |
-          pytest testApi/test_mock_post_login_data.py --html=report.html --self-contained-html
+      - name: Run tests
+        run: pytest testApi/test_mock_post_login_data.py --html=report.html --self-contained-html
 
       - name: Upload HTML Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # ✅ ใช้เวอร์ชัน v4 แทน v3
         with:
           name: test-report
           path: report.html
