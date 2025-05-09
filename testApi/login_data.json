@@ -1,0 +1,8 @@
+[
+  { "username": "emilys", "password": "emilyspass" },
+  { "username": "emilys", "password": "wrongpass" },
+  { "username": "wronguser", "password": "emilyspass" },
+  { "username": "kminchelle", "password": "0lelplR" },
+  { "username": "kminchelle", "password": "wrongpass" },
+  { "username": "wronguser", "password": "0lelplR" }
+]
