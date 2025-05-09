@@ -1,12 +1,15 @@
-name: Run Pytest Tests
+name: Run Automated Tests
 
 on: [push, pull_request]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -17,5 +20,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest responses pytest-html
 
-      - name: Run tests
-        run: pytest testApi/test_mock_post_login_data.py --html=report.html --self-contained-html
+      - name: Run tests with pytest
+        run: |
+          pytest testApi/test_mock_post_login_data.py --html=report.html --self-contained-html
+
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-report
+          path: report.html
